@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une tâche{% endblock %}
+
+{% block body %}
+<nav class="mb-6">
+    <a href="{{ path('task_list_show', {id: task_list.id}) }}" class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-indigo-600 transition-colors">
+        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+        Retour à la liste
+    </a>
+</nav>
+
+<div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+    <div class="p-8 border-b border-gray-100 bg-gray-50/50">
+        <h1 class="text-2xl font-bold text-gray-900">Nouvelle tâche</h1>
+        <p class="mt-1 text-sm text-gray-500">Ajoutez un élément à faire dans <strong>{{ task_list.name }}</strong>.</p>
+    </div>
+
+    <div class="p-8">
+        {{ form_start(form, {'attr': {'class': 'space-y-6'}}) }}
+            <div>
+                {{ form_label(form.title, 'Titre de la tâche', {'label_attr': {'class': 'block text-sm font-semibold text-gray-700 mb-2'}}) }}
+                {{ form_widget(form.title, {'attr': {'class': 'block w-full px-4 py-3 rounded-xl border-gray-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm transition-all', 'placeholder': 'Ex: Acheter du pain, Appeler le client...'}}) }}
+                {{ form_errors(form.title, {'attr': {'class': 'mt-2 text-sm text-red-600'}}) }}
+            </div>
+
+            <div class="pt-4 flex items-center justify-end space-x-4">
+                <a href="{{ path('task_list_show', {id: task_list.id}) }}" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Annuler</a>
+                <button type="submit" class="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-sm font-semibold rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all">
+                    Ajouter la tâche
+                </button>
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}
